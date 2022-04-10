@@ -1,0 +1,26 @@
+<div class="col-xs-12">
+    <mat-expansion-panel #panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Add GitHub User</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="row">
+            <div class="col-xs-12">
+                <mat-form-field>
+                    <mat-label>User Name</mat-label>
+                    <input type="text" matInput [(ngModel)]="name" autocomplete="off" [disabled]="loading" />
+                </mat-form-field>
+            </div>
+            <div class="col-xs-12">
+                <mat-form-field>
+                    <mat-label>Token</mat-label>
+                    <input type="text" matInput [(ngModel)]="token" autocomplete="off" [disabled]="loading" />
+                </mat-form-field>
+            </div>
+        </div>
+        <mat-action-row>
+            <button mat-button color="primary" 
+                    (click)="addUser()"
+                    [disabled]="loading">Add</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+</div>

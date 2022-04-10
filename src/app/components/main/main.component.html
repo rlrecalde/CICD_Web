@@ -1,0 +1,51 @@
+<div class="progressBar">
+    <ng-container *ngIf="loading == true">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-container>
+</div>
+<div class="row mt10">
+    <div class="col-xs-6">
+        <app-users [users]="users" 
+                   [loading]="loading"
+                   (selectedUserEvent)="userSelected($event)"></app-users>
+    </div>
+    <div class="col-xs-6">
+        <app-add-user [loading]="loading" 
+                      (loadingEvent)="childIsLoading($event)"
+                      (errorEvent)="errorReceived($event)"
+                      (addedUserEvent)="userAdded()"></app-add-user>    
+    </div>
+    <div class="col-xs-12">
+        <div class="col-xs-6">
+            <button mat-button class="form-control" color="primary" 
+            (click)="setDefaultUser()" 
+            [disabled]="loading" 
+            *ngIf="user && user.isDefault == false">Set as Default</button>
+        </div>
+    </div>
+</div>
+<div class="row mt10">
+    <div class="col-xs-12">
+        <div class="col-xs-12">
+            <span>Projects</span>
+        </div>
+    </div>
+</div>
+<div class="row mt10">
+    <div class="col-xs-12">
+        <app-projects [projects]="projects" 
+                      [loading]="loading"
+                      (removedProjectEvent)="projectRemoved()"
+                      (loadingEvent)="childIsLoading($event)"
+                      (errorEvent)="errorReceived($event)"></app-projects>
+    </div>
+</div>
+<div class="row mt10" *ngIf="user">
+    <div class="col-xs-12">
+        <app-add-project [user]="user" 
+                         [loading]="loading"
+                         (loadingEvent)="childIsLoading($event)"
+                         (errorEvent)="errorReceived($event)"
+                         (addedProjectEvent)="projectAdded()"></app-add-project>
+    </div>
+</div>

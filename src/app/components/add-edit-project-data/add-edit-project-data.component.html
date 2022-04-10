@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-xs-8">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input type="text" matInput [(ngModel)]="name" 
+                                        (change)="nameChange.emit(name)"
+                                        [disabled]="loading || editMode"
+                                        autocomplete="off" />
+        </mat-form-field>
+    </div>
+    <div class="col-xs-4">
+        <mat-form-field>
+            <mat-label>Dotnet Version</mat-label>
+            <mat-select [(value)]="dotnetVersion" (selectionChange)="dotnetVersionChange.emit(dotnetVersion)" [disabled]="loading">
+                <mat-option *ngFor="let version of dotnetVersions" [value]="version">
+                    {{ version }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-xs-8">
+        <mat-form-field>
+            <mat-label>Relative Path</mat-label>
+            <input type="text" matInput [(ngModel)]="relativePath" 
+                                        (change)="relativePathChange.emit(relativePath)" 
+                                        [disabled]="loading || editMode"
+                                        placeholder="MyProject\MyProject.csproj" 
+                                        autocomplete="off" />
+        </mat-form-field>
+    </div>
+    <div class="col-xs-4">
+        <mat-checkbox [(ngModel)]="test" (change)="testChange.emit(test)" [disabled]="loading">Test</mat-checkbox>
+    </div>
+    <div class="col-xs-4 col-xs-offset-8">
+        <mat-checkbox [(ngModel)]="deploy" (change)="deployChange.emit(deploy)" [disabled]="loading">Deploy</mat-checkbox>
+    </div>
+    <div class="col-xs-4 col-xs-offset-8">
+        <mat-form-field>
+            <mat-label>Deploy Port</mat-label>
+            <input type="text" matInput [(ngModel)]="deployPort" 
+                                        (change)="deployPortChange.emit(deployPort)" 
+                                        [disabled]="loading || !deploy"
+                                        autocomplete="off" />
+        </mat-form-field>
+    </div>
+</div>
+

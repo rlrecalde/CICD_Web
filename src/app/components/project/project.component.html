@@ -1,0 +1,30 @@
+<mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+        <mat-panel-title>{{ project.name }}</mat-panel-title>
+        <mat-panel-description>
+            {{ description }}
+            <mat-icon [ngClass]="iconClass">import_export</mat-icon>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="row">
+        <div class="col-xs-12">
+            <span class="warning-label">{{ warningMessage }}</span>
+        </div>
+        <div class="col-xs-12">
+            <ng-container *ngFor="let branchStep of branchSteps">
+                <app-branch [branchStep]="branchStep"></app-branch>
+            </ng-container>
+        </div>
+    </div>
+    <mat-action-row class="space-between">
+        <button mat-icon-button (click)="remove()" [disabled]="loading || status != 1">
+            <mat-icon class="button-icon-75">delete</mat-icon>
+        </button>
+        <button mat-icon-button (click)="edit()" [disabled]="loading || status != 1">
+            <mat-icon class="button-icon-75">edit</mat-icon>
+        </button>
+        <button mat-button color="primary" 
+                    (click)="runOrStop()"
+                    [disabled]="loading || status == 2">{{ status | status }}</button>
+    </mat-action-row>
+</mat-expansion-panel>

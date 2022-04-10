@@ -1,0 +1,21 @@
+<div class="col-xs-6">
+    <span>{{ branchStep.branch.name }}</span>
+</div>
+<div class="col-xs-6 tar">
+    <span>{{ branchStep.workFlowStep | workFlowStep }}</span>
+</div>
+<ng-container *ngIf="branchStep.branch.lastCommit.committerName">
+    <div class="col-xs-4">
+        <span>{{ branchStep.branch.lastCommit.committerName + ' (' + branchStep.branch.lastCommit.committerLogin + ')' }}</span>
+    </div>
+    <div class="col-xs-4">
+        <span>{{ branchStep.branch.lastCommit.id.substring(0, 7) + ' - ' + branchStep.branch.lastCommit.message }}</span>
+    </div>
+    <div class="col-xs-4 tar">
+        <span>{{ branchStep.branch.lastCommit.date | date: 'yyyy/MM/dd HH:mm:ss' }}</span>
+    </div>
+</ng-container>
+<div class="col-xs-12">
+    <span class="error-label">{{ branchStep.errorMessage }}</span>
+</div>
+<div class="col-xs-12 mb10"></div>
